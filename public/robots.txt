@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://grow-wise-farm.netlify.app
+
+# Sitemaps
+Sitemap: https://grow-wise-farm.netlify.app/sitemap.xml
