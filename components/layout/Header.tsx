@@ -187,141 +187,112 @@ export default function Header() {
         </div>
       </header>
 
-      {/* ================= MOBILE MENU ================= */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[100] bg-white lg:hidden overflow-y-auto">
+     {/* ================= MOBILE NAVIGATION ================= */}
+<div className="container mx-auto px-4 sm:px-6 py-6">
 
-          {/* Mobile Header */}
-          <div className="sticky top-0 bg-white border-b border-[#E5EAD9]">
-            <div className="container mx-auto px-4 sm:px-6">
-              <div className="flex min-h-[76px] items-center justify-between">
+  <nav className="flex flex-col">
 
-                <Link
-                  href="/"
-                  className="flex items-center gap-2"
-                  onClick={closeMobileMenu}
-                >
-                  <Image
-                    src="/logo.png"
-                    alt="AfriBEST Seeds"
-                    width={160}
-                    height={55}
-                    priority
-                    className="h-11 w-auto object-contain"
-                  />
+    {/* Home */}
+    <Link
+      href="/"
+      onClick={closeMobileMenu}
+      className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+    >
+      Home
+    </Link>
 
-                  <span className="hidden xs:block font-serif font-bold text-xl">
-                    <span className="text-[#7CB518]">
-                      AfriBEST
-                    </span>
-                    <span className="text-[#2A3D27]">
-                      {' '}SEEDS
-                    </span>
-                  </span>
-                </Link>
+    {/* Categories */}
+    <Link
+      href="/category"
+      onClick={closeMobileMenu}
+      className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+    >
+      Categories
+    </Link>
 
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={closeMobileMenu}
-                  className="h-10 w-10 text-[#2A3D27] hover:bg-[#7CB518]/10"
-                  aria-label="Close menu"
-                >
-                  <X className="h-6 w-6" />
-                </Button>
-              </div>
-            </div>
-          </div>
+    {/* All Articles */}
+    <Link
+      href="/blog"
+      onClick={closeMobileMenu}
+      className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+    >
+      All Articles
+    </Link>
 
-          {/* Mobile Navigation */}
-          <div className="container mx-auto px-4 sm:px-6 py-6">
+    {/* Product Catalogue */}
+    <a
+      href="https://catalogue.afribestseeds.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={closeMobileMenu}
+      className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+    >
+      Product Catalogue
+    </a>
 
-            <nav className="flex flex-col">
+    {/* AfriBEST Tools */}
+    <div className="border-b border-gray-100">
 
-              <Link
-                href="/"
-                onClick={closeMobileMenu}
-                className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518]"
-              >
-                Home
-              </Link>
+      <p className="py-4 text-base font-semibold text-[#2A3D27]">
+        AfriBEST TOOLS
+      </p>
 
-              <Link
-                href="/blog"
-                onClick={closeMobileMenu}
-                className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518]"
-              >
-                All Articles
-              </Link>
+      <div className="flex flex-col gap-1 pb-4 pl-4">
 
-              {/* Product Catalogue */}
-              <a
-                href="https://catalogue.afribestseeds.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={closeMobileMenu}
-                className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518]"
-              >
-                Product Catalogue
-              </a>
+        <Link
+          href="/tools"
+          onClick={closeMobileMenu}
+          className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
+        >
+          Farm Tools
+        </Link>
 
-              {/* AfriBEST Tools */}
-              <div className="py-4 border-b border-gray-100">
-                <p className="mb-3 text-base font-semibold text-[#2A3D27]">
-                  AfriBEST Tools
-                </p>
+        <Link
+          href="/tools/farm-calculator"
+          onClick={closeMobileMenu}
+          className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
+        >
+          Farm Calculator
+        </Link>
 
-                <div className="flex flex-col gap-2 pl-3">
-                  <Link
-                    href="/tools"
-                    onClick={closeMobileMenu}
-                    className="py-2 text-sm text-[#4B7F52]"
-                  >
-                    Farm Tools
-                  </Link>
+        <Link
+          href="/tools/crop-planner"
+          onClick={closeMobileMenu}
+          className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
+        >
+          Crop Planner
+        </Link>
 
-                  <Link
-                    href="/tools/farm-calculator"
-                    onClick={closeMobileMenu}
-                    className="py-2 text-sm text-[#4B7F52]"
-                  >
-                    Farm Calculator
-                  </Link>
+        <Link
+          href="/tools/farm-guide"
+          onClick={closeMobileMenu}
+          className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
+        >
+          Farm Guide
+        </Link>
 
-                  <Link
-                    href="/tools/crop-planner"
-                    onClick={closeMobileMenu}
-                    className="py-2 text-sm text-[#4B7F52]"
-                  >
-                    Crop Planner
-                  </Link>
+      </div>
+    </div>
 
-                  <Link
-                    href="/tools/farm-guide"
-                    onClick={closeMobileMenu}
-                    className="py-2 text-sm text-[#4B7F52]"
-                  >
-                    Farm Guide
-                  </Link>
-                </div>
-              </div>
+    {/* About Us */}
+    <Link
+      href="/about"
+      onClick={closeMobileMenu}
+      className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+    >
+      About Us
+    </Link>
 
-              <Link
-                href="/about"
-                onClick={closeMobileMenu}
-                className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518]"
-              >
-                About
-              </Link>
+    {/* Contact Us */}
+    <Link
+      href="/contact"
+      onClick={closeMobileMenu}
+      className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+    >
+      Contact Us
+    </Link>
 
-              <Link
-                href="/contact"
-                onClick={closeMobileMenu}
-                className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518]"
-              >
-                Contact
-              </Link>
-            </nav>
+  </nav>
 
             {/* Mobile Social Media */}
             <div className="mt-8">
