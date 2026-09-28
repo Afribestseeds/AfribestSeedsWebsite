@@ -7,22 +7,14 @@ import Image from 'next/image';
 import {
   Menu,
   X,
-  ChevronDown,
   Instagram,
   Facebook,
   Mail,
   Phone,
+  ChevronDown,
 } from 'lucide-react';
 
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 
 const socialLinks = [
   {
@@ -49,21 +41,39 @@ const socialLinks = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
+    setMobileToolsOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen((current) => !current);
+  };
+
+  const toggleMobileTools = () => {
+    setMobileToolsOpen((current) => !current);
   };
 
   return (
     <>
+      {/* ================================================================ */}
+      {/*                         MAIN HEADER                              */}
+      {/* ================================================================ */}
+
       <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-white via-[#F7FAF2] to-[#EAF4DC] backdrop-blur-md border-b border-[#DCE8CC] shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex min-h-[76px] items-center justify-between gap-4">
 
-            {/* ================= LOGO ================= */}
+            {/* ========================================================== */}
+            {/*                            LOGO                            */}
+            {/* ========================================================== */}
+
             <Link
               href="/"
               className="flex items-center gap-2 shrink-0"
+              aria-label="AfriBEST Seeds Home"
             >
               <Image
                 src="/logo.png"
@@ -75,14 +85,23 @@ export default function Header() {
               />
 
               <span className="hidden sm:block whitespace-nowrap font-serif font-bold text-xl lg:text-2xl tracking-tight">
-                <span className="text-[#7CB518]">AfriBEST</span>
-                <span className="text-[#2A3D27]"> SEEDS</span>
+                <span className="text-[#7CB518]">
+                  AfriBEST
+                </span>
+
+                <span className="text-[#2A3D27]">
+                  {' '}SEEDS
+                </span>
               </span>
             </Link>
 
-            {/* ================= DESKTOP NAVIGATION ================= */}
+            {/* ========================================================== */}
+            {/*                     DESKTOP NAVIGATION                     */}
+            {/* ========================================================== */}
+
             <nav className="hidden lg:flex items-center gap-1">
 
+              {/* Home */}
               <Link
                 href="/"
                 className="px-3 py-2 rounded-lg text-sm font-medium text-[#2A3D27] hover:bg-[#7CB518]/10 hover:text-[#4B7F52] transition-colors"
@@ -91,13 +110,14 @@ export default function Header() {
               </Link>
 
               {/* Categories */}
-                <Link
+              <Link
                 href="/category"
                 className="px-3 py-2 rounded-lg text-sm font-medium text-[#2A3D27] hover:bg-[#7CB518]/10 hover:text-[#4B7F52] transition-colors"
               >
                 Categories
               </Link>
 
+              {/* All Articles */}
               <Link
                 href="/blog"
                 className="px-3 py-2 rounded-lg text-sm font-medium text-[#2A3D27] hover:bg-[#7CB518]/10 hover:text-[#4B7F52] transition-colors"
@@ -116,14 +136,14 @@ export default function Header() {
               </a>
 
               {/* AfriBEST Tools */}
-                <Link
+              <Link
                 href="/tools"
                 className="px-3 py-2 rounded-lg text-sm font-medium text-[#2A3D27] hover:bg-[#7CB518]/10 hover:text-[#4B7F52] transition-colors"
               >
                 AfriBEST TOOLS
               </Link>
 
-
+              {/* About Us */}
               <Link
                 href="/about"
                 className="px-3 py-2 rounded-lg text-sm font-medium text-[#2A3D27] hover:bg-[#7CB518]/10 hover:text-[#4B7F52] transition-colors"
@@ -131,18 +151,23 @@ export default function Header() {
                 About Us
               </Link>
 
+              {/* Contact Us */}
               <Link
                 href="/contact"
                 className="px-3 py-2 rounded-lg text-sm font-medium text-[#2A3D27] hover:bg-[#7CB518]/10 hover:text-[#4B7F52] transition-colors"
               >
                 Contact Us
               </Link>
+
             </nav>
 
-            {/* ================= SOCIAL + MOBILE ================= */}
+            {/* ========================================================== */}
+            {/*                  SOCIAL ICONS + MOBILE BUTTON               */}
+            {/* ========================================================== */}
+
             <div className="flex items-center gap-1 sm:gap-2">
 
-              {/* Social Icons */}
+              {/* Desktop Social Icons */}
               <div className="hidden md:flex items-center gap-1">
 
                 {socialLinks.map((social) => {
@@ -170,6 +195,7 @@ export default function Header() {
                     </a>
                   );
                 })}
+
               </div>
 
               {/* Mobile Menu Button */}
@@ -177,127 +203,245 @@ export default function Header() {
                 variant="ghost"
                 size="icon"
                 className="lg:hidden h-10 w-10 text-[#2A3D27] hover:bg-[#7CB518]/10"
-                onClick={() => setMobileMenuOpen(true)}
-                aria-label="Open menu"
+                onClick={toggleMobileMenu}
+                aria-label={
+                  mobileMenuOpen
+                    ? 'Close menu'
+                    : 'Open menu'
+                }
+                aria-expanded={mobileMenuOpen}
               >
-                <Menu className="h-6 w-6" />
+                {mobileMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
               </Button>
+
             </div>
           </div>
         </div>
       </header>
 
-     {/* ================= MOBILE NAVIGATION ================= */}
-<div className="container mx-auto px-4 sm:px-6 py-6">
+      {/* ================================================================ */}
+      {/*                         MOBILE NAVIGATION                         */}
+      {/* ================================================================ */}
 
-  <nav className="flex flex-col">
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-[100] bg-white lg:hidden overflow-y-auto">
 
-    {/* Home */}
-    <Link
-      href="/"
-      onClick={closeMobileMenu}
-      className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
-    >
-      Home
-    </Link>
+          {/* ============================================================ */}
+          {/*                      MOBILE HEADER                           */}
+          {/* ============================================================ */}
 
-    {/* Categories */}
-    <Link
-      href="/category"
-      onClick={closeMobileMenu}
-      className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
-    >
-      Categories
-    </Link>
+          <div className="sticky top-0 z-10 bg-white border-b border-[#E5EAD9] shadow-sm">
 
-    {/* All Articles */}
-    <Link
-      href="/blog"
-      onClick={closeMobileMenu}
-      className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
-    >
-      All Articles
-    </Link>
+            <div className="container mx-auto px-4 sm:px-6">
 
-    {/* Product Catalogue */}
-    <a
-      href="https://catalogue.afribestseeds.com"
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={closeMobileMenu}
-      className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
-    >
-      Product Catalogue
-    </a>
+              <div className="flex min-h-[76px] items-center justify-between">
 
-    {/* AfriBEST Tools */}
-    <div className="border-b border-gray-100">
+                {/* Mobile Logo */}
+                <Link
+                  href="/"
+                  className="flex items-center gap-2"
+                  onClick={closeMobileMenu}
+                  aria-label="AfriBEST Seeds Home"
+                >
+                  <Image
+                    src="/logo.png"
+                    alt="AfriBEST Seeds"
+                    width={160}
+                    height={55}
+                    priority
+                    className="h-11 w-auto object-contain"
+                  />
 
-      <p className="py-4 text-base font-semibold text-[#2A3D27]">
-        AfriBEST TOOLS
-      </p>
+                  <span className="hidden xs:block font-serif font-bold text-xl">
+                    <span className="text-[#7CB518]">
+                      AfriBEST
+                    </span>
 
-      <div className="flex flex-col gap-1 pb-4 pl-4">
+                    <span className="text-[#2A3D27]">
+                      {' '}SEEDS
+                    </span>
+                  </span>
+                </Link>
 
-        <Link
-          href="/tools"
-          onClick={closeMobileMenu}
-          className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
-        >
-          Farm Tools
-        </Link>
+                {/* Close Button */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={closeMobileMenu}
+                  className="h-10 w-10 text-[#2A3D27] hover:bg-[#7CB518]/10"
+                  aria-label="Close menu"
+                >
+                  <X className="h-6 w-6" />
+                </Button>
 
-        <Link
-          href="/tools/farm-calculator"
-          onClick={closeMobileMenu}
-          className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
-        >
-          Farm Calculator
-        </Link>
+              </div>
+            </div>
+          </div>
 
-        <Link
-          href="/tools/crop-planner"
-          onClick={closeMobileMenu}
-          className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
-        >
-          Crop Planner
-        </Link>
+          {/* ============================================================ */}
+          {/*                      MOBILE LINKS                            */}
+          {/* ============================================================ */}
 
-        <Link
-          href="/tools/farm-guide"
-          onClick={closeMobileMenu}
-          className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
-        >
-          Farm Guide
-        </Link>
+          <div className="container mx-auto px-4 sm:px-6 py-6">
 
-      </div>
-    </div>
+            <nav className="flex flex-col">
 
-    {/* About Us */}
-    <Link
-      href="/about"
-      onClick={closeMobileMenu}
-      className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
-    >
-      About Us
-    </Link>
+              {/* ======================================================== */}
+              {/* Home */}
+              {/* ======================================================== */}
 
-    {/* Contact Us */}
-    <Link
-      href="/contact"
-      onClick={closeMobileMenu}
-      className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
-    >
-      Contact Us
-    </Link>
+              <Link
+                href="/"
+                onClick={closeMobileMenu}
+                className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+              >
+                Home
+              </Link>
 
-  </nav>
+              {/* ======================================================== */}
+              {/* Categories */}
+              {/* ======================================================== */}
 
-            {/* Mobile Social Media */}
+              <Link
+                href="/category"
+                onClick={closeMobileMenu}
+                className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+              >
+                Categories
+              </Link>
+
+              {/* ======================================================== */}
+              {/* All Articles */}
+              {/* ======================================================== */}
+
+              <Link
+                href="/blog"
+                onClick={closeMobileMenu}
+                className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+              >
+                All Articles
+              </Link>
+
+              {/* ======================================================== */}
+              {/* Product Catalogue */}
+              {/* ======================================================== */}
+
+              <a
+                href="https://catalogue.afribestseeds.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMobileMenu}
+                className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+              >
+                Product Catalogue
+              </a>
+
+              {/* ======================================================== */}
+              {/* AfriBEST TOOLS */}
+              {/* ======================================================== */}
+
+              <div className="border-b border-gray-100">
+
+                <button
+                  type="button"
+                  onClick={toggleMobileTools}
+                  className="flex w-full items-center justify-between py-4 text-left text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+                  aria-expanded={mobileToolsOpen}
+                >
+                  <span>
+                    AfriBEST TOOLS
+                  </span>
+
+                  <ChevronDown
+                    className={`h-5 w-5 transition-transform duration-200 ${
+                      mobileToolsOpen
+                        ? 'rotate-180'
+                        : ''
+                    }`}
+                  />
+                </button>
+
+                {mobileToolsOpen && (
+                  <div className="flex flex-col gap-1 pb-4 pl-4">
+
+                    {/* Farm Tools */}
+                    <Link
+                      href="/tools"
+                      onClick={closeMobileMenu}
+                      className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
+                    >
+                      Farm Tools
+                    </Link>
+
+                    {/* Farm Calculator */}
+                    <Link
+                      href="/tools/farm-calculator"
+                      onClick={closeMobileMenu}
+                      className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
+                    >
+                      Farm Calculator
+                    </Link>
+
+                    {/* Crop Planner */}
+                    <Link
+                      href="/tools/crop-planner"
+                      onClick={closeMobileMenu}
+                      className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#7CB518]/10 hover:text-[#7CB518] transition-colors"
+                    >
+                      Crop Planner
+                    </Link>
+
+                    {/* Farm Guide */}
+                    <Link
+                      href="/tools/farm-guide"
+                      onClick={closeMobileMenu}
+                      className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
+                    >
+                      Farm Guide
+                    </Link>
+
+                  </div>
+                )}
+
+              </div>
+
+              {/* ======================================================== */}
+              {/* About Us */}
+              {/* ======================================================== */}
+
+              <Link
+                href="/about"
+                onClick={closeMobileMenu}
+                className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+              >
+                About Us
+              </Link>
+
+              {/* ======================================================== */}
+              {/* Contact Us */}
+              {/* ======================================================== */}
+
+              <Link
+                href="/contact"
+                onClick={closeMobileMenu}
+                className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+              >
+                Contact Us
+              </Link>
+
+            </nav>
+
+            {/* ========================================================== */}
+            {/*                    MOBILE SOCIAL                            */}
+            {/* ========================================================== */}
+
             <div className="mt-8">
 
-              <p className="text-sm font-semibold text-[#2A3D27] mb-4">
+              <p className="mb-4 text-sm font-semibold text-[#2A3D27]">
                 Connect with AfriBEST Seeds
               </p>
 
@@ -321,6 +465,7 @@ export default function Header() {
                           : 'noopener noreferrer'
                       }
                       aria-label={social.name}
+                      title={social.name}
                       className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F3F7ED] text-[#4B7F52] hover:bg-[#7CB518] hover:text-white transition-all"
                     >
                       <Icon className="h-5 w-5" />
@@ -331,7 +476,10 @@ export default function Header() {
               </div>
             </div>
 
-            {/* WhatsApp CTA */}
+            {/* ========================================================== */}
+            {/*                    WHATSAPP CTA                              */}
+            {/* ========================================================== */}
+
             <a
               href="https://wa.me/255682510710"
               target="_blank"
