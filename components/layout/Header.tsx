@@ -344,70 +344,13 @@ export default function Header() {
               {/* AfriBEST TOOLS */}
               {/* ======================================================== */}
 
-              <div className="border-b border-gray-100">
-
-                <button
-                  type="button"
-                  onClick={toggleMobileTools}
-                  className="flex w-full items-center justify-between py-4 text-left text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
-                  aria-expanded={mobileToolsOpen}
-                >
-                  <span>
-                    AfriBEST TOOLS
-                  </span>
-
-                  <ChevronDown
-                    className={`h-5 w-5 transition-transform duration-200 ${
-                      mobileToolsOpen
-                        ? 'rotate-180'
-                        : ''
-                    }`}
-                  />
-                </button>
-
-                {mobileToolsOpen && (
-                  <div className="flex flex-col gap-1 pb-4 pl-4">
-
-                    {/* Farm Tools */}
-                    <Link
-                      href="/tools"
-                      onClick={closeMobileMenu}
-                      className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
-                    >
-                      Farm Tools
-                    </Link>
-
-                    {/* Farm Calculator */}
-                    <Link
-                      href="/tools/farm-calculator"
-                      onClick={closeMobileMenu}
-                      className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
-                    >
-                      Farm Calculator
-                    </Link>
-
-                    {/* Crop Planner */}
-                    <Link
-                      href="/tools/crop-planner"
-                      onClick={closeMobileMenu}
-                      className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#7CB518]/10 hover:text-[#7CB518] transition-colors"
-                    >
-                      Crop Planner
-                    </Link>
-
-                    {/* Farm Guide */}
-                    <Link
-                      href="/tools/farm-guide"
-                      onClick={closeMobileMenu}
-                      className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#4B7F52] hover:bg-[#F3F7ED] hover:text-[#7CB518] transition-colors"
-                    >
-                      Farm Guide
-                    </Link>
-
-                  </div>
-                )}
-
-              </div>
+               <Link
+                href="/tools"
+                onClick={closeMobileMenu}
+                className="py-4 border-b border-gray-100 text-base font-semibold text-[#2A3D27] hover:text-[#7CB518] transition-colors"
+              >
+                AfriBEST TOOLS
+              </Link>
 
               {/* ======================================================== */}
               {/* About Us */}
